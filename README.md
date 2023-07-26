@@ -16,6 +16,7 @@ What are Web Frameworks? - [mdn web docs](https://developer.mozilla.org/en-US/do
     - [Other Project Folders / Files](#other-project-folders--files)
 4. [How to use the Framework](#4-how-to-use-the-framework)
     - [Starting the Express Server](#starting-the-express-server)
+    - [Stopping the Express Server](#stopping-the-express-server)
     - [Adding HTML](#adding-html)
     - [Adding CSS](#adding-css)
     - [Adding JavaScript](#adding-javascript)
@@ -28,9 +29,11 @@ Node.Js must be installed to run this framework.
 
 How to install Node.Js - [Node.js Docs](https://nodejs.dev/en/learn/how-to-install-nodejs/)
 
-To check you have Node.Js installed, run the following command in the terminal. This should have been installed during **Bootcamp Level 0**.
+To check you have Node.Js installed, run the following command in the terminal.
 
 `node --version`
+
+This should have been installed during **Bootcamp Level 0**.
 
 This framework has been tested with Node.Js Version - **18.17.0**
 
@@ -56,7 +59,7 @@ After cloning the repository, the projects dependencies will need to be installe
 
 More information on NPM - [Intro to NPM package Manager](https://nodejs.dev/en/learn/an-introduction-to-the-npm-package-manager/)
 
-We advise that you use `Git` to clone this githib repository. Alternativly you can download this repo as a `.zip` file through github.
+We advise that you use `Git` to clone this github repository. Alternativly you can download this repo as a `.zip` file through github.
 
 What is Git? - [Getting Started - What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
 
@@ -64,16 +67,16 @@ How to install Git? - [Getting Started - Installing Git](https://git-scm.com/boo
 
 ## 3. Contents of the Framework
 ### JavaScript Example
-The JavaScript example shows how elements within the DOM can be referenced and maniplated. This example rotates the Logo in the top left. The  JavaScript code can be seen in the `./local/script.js` file.
+The JavaScript example shows how elements within the DOM can be referenced and manipulated. This example rotates the Logo in the top left. The  JavaScript code can be seen in the `./local/script.js` file.
 
-Comments are provided in the source for explaination.
+Comments are provided in the source for explanation.
 
 ### TypeScript Example
-The TypeScript example shows how Classes and Objects can be used in TypeScript. This example allows the inrement the counter value by 1 and reset back to 0.
+The TypeScript example shows how Classes and Objects can be used in TypeScript. This example allows the user to increment the counter value by 1 and reset back to 0.
 
-The TypeScript code can be seen in the `./typescript`. The `counter.ts` file contains class which is referenced/used in the `tsscript.ts` file.
+The TypeScript code can be seen in the `./typescript`. The `counter.ts` file contains a class called `Counter`, which is referenced/used in the `tsscript.ts` file.
 
-Comments are provided in the source for explaination.
+Comments are provided in the source for explanation.
 
 ### Other Project Folders / Files
 #### ./build
@@ -89,11 +92,11 @@ This file contains a list of files that will be excluded from the projects repos
 #### ./app.ts
 This is the main app file that is used by the express server to handle requests.
 #### nodemon.json
-This file contains configuration for the nodemon whichis used to restart the server when .ts files are changed.
-#### ./package.json
+This file contains configuration for `nodemon`, which is used to restart the server when .ts files are changed.
+#### ./package-lock.json
 This file contains a detailed list of packages installed in the project.
 #### ./package.json
-This file contain a list of general information about the project including name, version and dependencies.
+This file contains a list of general information about the project including name, version and dependencies.
 #### tsconfig.json
 This file contains the TypeScript compiler configuration.
 
@@ -108,7 +111,7 @@ This command will compile any TypeScript that has been added to the project with
 
 Once the command has finished running you will see the output `Express Server Running - Port: 3000`. 
 
-Open a browser and navigated to `localhost:3000` and the index page will render.
+Open a browser and navigate to `localhost:3000` and the index page will render.
 
 ### Stopping the Express Server
 To stop the express server in the terminal press `ctrl + c` and press `y, enter` to Terminate Batch Jobs (Terminate Batch Job may need to be executed twice).
@@ -117,14 +120,14 @@ To stop the express server in the terminal press `ctrl + c` and press `y, enter`
 HTML can be added to the `index.html` file within the `./public` directory.
 
 ### Adding CSS
-CSS can be added to the project by adding the `.css` file into the `./public` directory.
+CSS can be added to the `styles.css` file into the `./public` directory.
 
-This must be referenced in your target `.html` file, for example:
+New `.css` files added to the `./public` directory must be referenced in your target `.html` file, for example:
 
 `<link rel="stylesheet" type="text/css" href="styles.css">`
 
 ### Adding JavaScript
-JavaScript can be added to the project by adding the `.js` file into the `./public` directory.
+JavaScript can be added to the project by adding a `.js` file into the `./public` directory.
 
 Any JavaScript that you would like to include with your page, must be included as a html script tag. For Example:
 
