@@ -110,6 +110,9 @@ Once the command has finished running you will see the output `Express Server Ru
 
 Open a browser and navigated to `localhost:3000` and the index page will render.
 
+### Stopping the Express Server
+To stop the express server in the terminal press `ctrl + c` and press `y, enter` to Terminate Batch Jobs (Terminate Batch Job may need to be executed twice).
+
 ### Adding HTML
 HTML can be added to the `index.html` file within the `./public` directory.
 
