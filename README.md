@@ -1,4 +1,4 @@
-# DN Basic Webpage Framework
+# DN Basic Webpage Framework (Example- Single Page Navigation)
 Using **Node.js**, **Express** and **TypeScript**.
 
 This framework allows you to practice developing basic webpages in HTML, CSS, JavaScript and TypeScript.
@@ -11,9 +11,7 @@ What are Web Frameworks? - [mdn web docs](https://developer.mozilla.org/en-US/do
     - [TypeScript](#typescript)
 2. [Project Installation](#2-project-installation)
 3. [Contents of the Framework](#3-contents-of-the-framework)
-    - [JavaScript Example](#javascript-example)
-    - [TypeScript Example](#typescript-example)
-    - [Other Project Folders / Files](#other-project-folders--files)
+    - [Project Folders / Files](#other-project-folders--files)
 4. [How to use the Framework](#4-how-to-use-the-framework)
     - [Starting the Express Server](#starting-the-express-server)
     - [Stopping the Express Server](#stopping-the-express-server)
@@ -21,6 +19,11 @@ What are Web Frameworks? - [mdn web docs](https://developer.mozilla.org/en-US/do
     - [Adding CSS](#adding-css)
     - [Adding JavaScript](#adding-javascript)
     - [Adding TypeScript](#adding-typescript)
+5. [Single Page Navigation Example](#5-single-page-navigation-example)
+    - [Overview](#overview)
+    - [index.html](#indexhtml)
+    - [script.js](#scriptjs)
+    - [section-content-manager.js](#section-content-managerjs)
 
 
 ## 1. Setting Up Your Environment / Dependencies
@@ -65,20 +68,7 @@ What is Git? - [Getting Started - What is Git?](https://git-scm.com/book/en/v2/G
 
 How to install Git? - [Getting Started - Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-## 3. Contents of the Framework
-### JavaScript Example
-The JavaScript example shows how elements within the DOM can be referenced and manipulated. This example rotates the Logo in the top left. The  JavaScript code can be seen in the `./local/script.js` file.
-
-Comments are provided in the source for explanation.
-
-### TypeScript Example
-The TypeScript example shows how Classes and Objects can be used in TypeScript. This example allows the user to increment the counter value by 1 and reset back to 0.
-
-The TypeScript code can be seen in the `./typescript`. The `counter.ts` file contains a class called `Counter`, which is referenced/used in the `tsscript.ts` file.
-
-Comments are provided in the source for explanation.
-
-### Other Project Folders / Files
+### Project Folders / Files
 #### ./build
 This folder contains JavaScript files that have been produced from the TypeScript compiler.
 #### ./node_modules
@@ -141,3 +131,135 @@ When running the server the TypeScript is compiled and added to the `./build` di
 Any TypeScript that you would like to include with your page, must be included as a html script tag **with the extension of .js not .ts**.
 
 `<script src="tsscript.js" type="module" defer></script>`
+
+## 5. Single Page Navigation Example
+### Overview
+This example demonstrates how elements can be manipulated to create a single page application.
+
+### index.html
+Within the `index.html` file there is a `<div id="section">` which acts as a container for the inserted content.
+
+```html
+<div class="section-container">
+    <div id="section" class="section">
+        <!-- Contents Inserted by section-content-manager.js -->
+    </div>
+</div>
+```
+### script.js
+
+The content that is inserted into this element is determined by the [URL Hash](https://developer.mozilla.org/en-US/docs/Web/API/Location/hash). 
+In this example we are setting the hash value using `<a>` elements with the href tag set to the required value.
+
+```html
+<a href="#section1" class="nav-link green-btn">Section 1</a>
+<a href="#section2" class="nav-link green-btn">Section 2</a>
+<a href="#section3" class="nav-link green-btn">Section 3</a>
+```
+
+By default the Hash is set to `#section1` and the content is updated.
+
+```JavaScript
+//Set the hash to default
+if(!location.hash){
+    location.hash = "#section1";
+};
+
+//Update Section on Load
+UpdateSection();
+```
+The Code below listens for when the `location.hash` is changed, when triggered the `UpdateSection();` function is called.
+
+```JavaScript
+//Update Section Contents when hash is changed.
+window.addEventListener("hashchange", () =>{
+    UpdateSection();
+})
+```
+
+This function calls the `UpdateSectionContent(sectionName)` function within the `section-content-manager.js` script.
+```JavaScript
+//Update Section calls update section contents in the "section-content-manager" script.
+function UpdateSection(){
+    var sectionName = location.hash.substring(1);
+    SectionContentManager.UpdateSectionContent(sectionName);
+}
+```
+
+### section-content-manager.js
+
+The `section-content-manager.js` script handles the manipulation of the section element.
+
+The `UpdateSectionContent(sectionName)` function sets the section elements innerHTML to that value returned from `GetSectionContent(sectionName)`.
+
+```JavaScript
+//Reference Section Element
+const Section = document.getElementById("section");
+
+//Export Allows this function to be imported into other scripts.
+export function UpdateSectionContent(sectionName){
+    Section.innerHTML = GetSectionContent(sectionName);
+}
+```
+
+The `GetSectionContent(sectionName)` function takes in a section name and returns the content for the requested section.
+
+```JavaScript
+//Get Section Content based on the SectionName
+function GetSectionContent(sectionName){
+    if(sectionName == "section1")
+        return Section1Content();
+    else if(sectionName == "section2")
+        return Section2Content();
+    else if(sectionName == "section3")
+        return Section3Content();
+    else
+        return SectionNotFoundContent();
+}
+```
+
+The below functions return a html string that is to be inserted for that section. These can also be treated as templates.
+
+```JavaScript
+//Section Template Functions - Returning html for that section.
+function Section1Content(){
+    return `
+    <p class="section-title">Section 1</p>
+    <div class="section-nav">
+        <a href="#section2" class="nav-link green-btn">Section 2</a>
+        <a href="#section3" class="nav-link green-btn">Section 3</a>
+    </div>
+    `;
+}
+
+function Section2Content(){
+    return `
+    <p class="section-title">Section 2</p>
+    <div class="section-nav">
+        <a href="#section1" class="nav-link green-btn">Section 1</a>
+        <a href="#section3" class="nav-link green-btn">Section 3</a>
+    </div>
+    `;
+}
+
+function Section3Content(){
+    return `
+    <p class="section-title">Section 3</p>
+    <div class="section-nav">
+        <a href="#section1" class="nav-link green-btn">Section 1</a>
+        <a href="#section2" class="nav-link green-btn">Section 2</a>
+    </div>
+    `;
+}
+
+function SectionNotFoundContent(){
+    return `
+    <p class="section-title">Section was not found. Please Select a Section</p>
+    <div class="section-nav">
+        <a href="#section1" class="nav-link green-btn">Section 1</a>
+        <a href="#section2" class="nav-link green-btn">Section 2</a>
+        <a href="#section3" class="nav-link green-btn">Section 3</a>
+    </div> `;
+}
+
+```

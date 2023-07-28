@@ -1,16 +1,22 @@
-//Reference needed Elements
-var Logo = document.getElementById("logo")
-var RotateLogoBtn = document.getElementById("rotate-logo-btn");
+//Imports the contents of "section-content-manager.js".
+import * as SectionContentManager from "./section-content-manager.js";
 
-//Listen for Rotate Button to be clicked
-RotateLogoBtn.addEventListener("click", () => {
-    RotateLogo();
+//Set the hash to default
+if(!location.hash){
+    location.hash = "#section1";
+};
+
+//Update Section on Load
+UpdateSection();
+
+//Update Section Contents when hash is changed.
+window.addEventListener("hashchange", () =>{
+    UpdateSection();
 })
 
-//Stores Current Rotation Value
-var CurrentRotation = 0;
-
-function RotateLogo(){
-    CurrentRotation += 45;
-    Logo.style.transform = 'rotate(' + CurrentRotation + 'deg)';
+//Update Section calls update section contents in the "section-content-manager" script.
+function UpdateSection(){
+    var sectionName = location.hash.substring(1);
+    console.log(sectionName);
+    SectionContentManager.UpdateSectionContent(sectionName);
 }

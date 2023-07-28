@@ -8,24 +8,15 @@
 </head>
 <body>
     <img id="logo" class="logo" src="DN-Logo.png" alt="Digital Native Logo">
-    <h1 class="page-title">DN Basic Webpage Framework</h1>
-    <div class="widget-container">
-        <div class="widget">
-            <h2>JavaScript Example:</h2>
-            <button id="rotate-logo-btn" class="btn green-btn">Rotate Logo</button>
-        </div>
-        <div class="widget">
-            <h2>TypeScript Example:</h2>
-            <p>Counter Value:</p>
-            <p id="counter-value">0</p>
-            <button id="increment-counter-btn" class="btn green-btn">Increment Counter</button>
-            <button id="reset-counter-btn" class="btn pink-btn">Reset Counter</button>
+    <h1 class="page-title">Single Page Navigation</h1>
+    <div class="section-container">
+        <div id="section" class="section">
+            <!-- Contents Inserted by section-content-manager.js -->
         </div>
     </div>
 </body>
+
 <!-- Including JavaScript Files -->
-<script src="script.js"></script>
-<!-- Including Typescript Generated Files -->
-<script src="tsscript.js" type="module" defer></script>
-<script src="counter.js" type="module" defer></script>
+<script src="script.js" type="module"></script>
+<script src="section-content-manager.js" type="module"></script>
 </html>
