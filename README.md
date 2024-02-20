@@ -57,6 +57,8 @@ After cloning the repository, the projects dependencies will need to be installe
 
 `npm install`
 
+The project dependencies may need to be updated at the time of install - [npm-update](https://docs.npmjs.com/cli/v10/commands/npm-update)
+
 More information on NPM - [Intro to NPM package Manager](https://nodejs.dev/en/learn/an-introduction-to-the-npm-package-manager/)
 
 We advise that you use `Git` to clone this github repository. Alternativly you can download this repo as a `.zip` file through github.
